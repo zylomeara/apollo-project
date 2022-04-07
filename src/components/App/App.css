@@ -1,0 +1,12 @@
+.Header {
+    padding: 10px;
+    background: #4c4cf8!important;
+}
+
+.Content {
+    height: calc(100vh - 64px);
+}
+
+.AuthError {
+    padding: 10px;
+}

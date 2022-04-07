@@ -1,0 +1,96 @@
+query getProjects(
+    $cond: String
+    $limit: Int
+    $offset: Int
+    $sort: [_SortCriterionSpecification!]
+) {
+    searchProject(
+        cond: $cond
+        limit: $limit
+        offset: $offset
+        sort: $sort
+    ) {
+        elems {
+            id
+            name
+        }
+        count
+    }
+}
+
+query getTasks(
+    $cond: String
+    $limit: Int
+    $offset: Int
+    $sort: [_SortCriterionSpecification!]
+) {
+    searchTask(
+        cond: $cond
+        limit: $limit
+        offset: $offset
+        sort: $sort
+    ) {
+        elems {
+            id
+            title
+            description
+        }
+        count
+    }
+}
+
+mutation createProject($input: _CreateProjectInput!) {
+    packet {
+        createProject(input: $input) {
+            id
+            name
+        }
+    }
+}
+
+mutation createTask($input: _CreateTaskInput!) {
+    packet {
+        createTask(input: $input) {
+            id
+            title
+            description
+        }
+    }
+}
+
+mutation updateProject(
+    $input: _UpdateProjectInput!
+    $compare: _CompareProjectInput
+) {
+    packet {
+        updateProject(
+            input: $input
+            compare: $compare
+        ) {
+            id
+            name
+        }
+    }
+}
+
+mutation updateTask($input: _UpdateTaskInput!, $compare: _CompareTaskInput) {
+    packet {
+        updateTask(input: $input, compare: $compare) {
+            id
+            title
+            description
+        }
+    }
+}
+
+mutation deleteProject($id: ID!, $compare: _CompareProjectInput) {
+    packet {
+        deleteProject(id: $id, compare: $compare)
+    }
+}
+
+mutation deleteTask($id: ID!, $compare: _CompareTaskInput) {
+    packet {
+        deleteTask(id: $id, compare: $compare)
+    }
+}
